@@ -19,11 +19,14 @@ const LeftSidebar = () => {
         <div className="ls-list">
             <div className="friends">
                 <img src={assets.profile_img} alt="" />
+                <div>
                 <p>Kasun Udayanga</p>
-                <span>Hello,How are you?  </span>
+                <span>Hello,How are you?</span>
+                </div>
             </div>
         </div>
     </div>
+    //52
   )
 }
 
