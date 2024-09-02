@@ -4,7 +4,7 @@
     height:75vh;
 }
 .ls-top{
-    padding:20px;
+    padding: px
 }
 .ls-nav{
     display: flex;
@@ -12,9 +12,12 @@
     align-items:center;
 }
 .ls-nav .logo{
-    max-width:300px;
+    max-width:150px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 .ls-nav .menu img{
+    padding-top: 10px;
     max-width:20px;
     opacity: 0.6;
     cursor: pointer;
@@ -25,7 +28,7 @@
     align-items: center;
     gap: 10px;
     padding:10px 12px;
-    margin-top: 20px;
+    margin-top: 2px;
 }
 .ls-search img{
     width: 16px;
@@ -43,7 +46,7 @@
 .ls-list{
     display: flex;
     flex-direction: column;
-    height: 60%;
+    height: 75%;
     overflow-y: scroll;
 }
 .friends img{
@@ -67,9 +70,37 @@
     color: #9f9f9f;
     font-size: 11px;
 }
-.friends :hover{
+.friends:hover{
      background-color: #077EFF;
 }
-.friends :hover span{
+.friends:hover span{
     color: white;
+}
+.ls-nav .menu{
+    position: relative;
+    padding: 10px 0px;
+}
+.menu .sub-menu{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 130px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    display: none;
+}
+.sub-menu hr{
+    border: none;
+    height: 1px;
+    background: #a4a4a4;
+    margin: 8px 0px;
+}
+.sub-menu p{
+    cursor: pointer;
+    font-size:14px;
+}
+.menu:hover .sub-menu{
+    display: block;
 }

@@ -4,11 +4,16 @@ import assets from '../../assets/assets'
 const LeftSidebar = () => {
   return (
     <div className='ls'>
-        <div className="is-top">
+        <div className="ls-top">
             <div className="ls-nav">
                 <img src={assets.logo} alt="imag log"className='logo' />
                 <div className="menu">
                     <img src={assets.menu_icon} alt="menu icon" />
+                    <div className="sub-menu">
+                        <p>Edit Profile</p>
+                        <hr />
+                        <p>Logout</p>
+                    </div>
                 </div>
             </div>
             <div className="ls-search">
