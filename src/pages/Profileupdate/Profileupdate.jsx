@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './Profileupdate.css';
 import assets from '../../assets/assets';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -16,7 +16,8 @@ const Profileupdate = () => {
   const [bio, setBio] = useState("");
   const [uid, setUid] = useState("");
   const [prevImage, setPrevImage] = useState("");
-  const {setUserData} = useState(AppContext);
+  
+  const { setUserData } = useContext(AppContext);
 
   const profileUpdate = async (event) => {
     event.preventDefault();
@@ -25,29 +26,29 @@ const Profileupdate = () => {
         toast.error("Upload profile picture");
         return;
       }
-      const docRef= doc(db, 'users', uid);
+      const docRef = doc(db, 'users', uid);
       if (image) {
         const imgUrl = await upload(image);
         setPrevImage(imgUrl);
         await updateDoc(docRef, {
            avatar: imgUrl,
-           bio:bio,
-           name:name
-          })
-      }else{
+           bio: bio,
+           name: name
+        });
+      } else {
         await updateDoc(docRef, {
-          bio:bio,
-          name:name
-         })
+          bio: bio,
+          name: name
+        });
       }
       const snap = await getDoc(docRef);
-      setUserData(snap.data());
-      navigate('/chat')
+      setUserData(snap.data());  // Correctly update the userData in context
+      navigate('/chat');
     } catch (error) {
       toast.error("An error occurred while updating the profile.");
       console.error("Profile update error: ", error);
     }
-  }
+  };
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
@@ -82,7 +83,7 @@ const Profileupdate = () => {
           <textarea onChange={(e) => setBio(e.target.value)} value={bio} placeholder='Write profile bio' required />
           <button type='submit'>Save</button>
         </form>
-        <img className='profile-pic' src={image ? URL.createObjectURL(image) :prevImage ?prevImage : assets.picon} alt="" />
+        <img className='profile-pic' src={image ? URL.createObjectURL(image) : prevImage ? prevImage : assets.picon} alt="" />
       </div>
     </div>
   )
