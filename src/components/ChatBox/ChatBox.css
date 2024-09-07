@@ -69,6 +69,7 @@
     width: 27px;
     aspect-ratio: 1/1;
     border-radius: 50px;
+    margin-left: 10px;
 }
 
 .s-msg,.r-msg{
@@ -100,7 +101,8 @@
     font-size: 9px;
 }
 .msg-img{
-    max-width: 230px;
+    max-width: 250px;
+    max-height: 200px;
     margin-bottom: 30px;
     border-radius: 10px;
 }
@@ -123,4 +125,10 @@
     color: #8d8b8b;
     font-style: italic;
 }
-
+.time{
+    font-size: 12px;
+    font-weight: 300;
+    padding-right: 5px;
+    padding-left: 10px;
+   
+}
