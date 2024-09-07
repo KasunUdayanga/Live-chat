@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 
 const LeftSidebar = () => {
   const navigate = useNavigate();
-  const { userData,chatData} = useContext(AppContext); // Ensure chatsData is an array by default
+  const { userData, chatData = [],chatUser,setChatUser,setMessagesId,messageId } = useContext(AppContext); // Ensure chatData is an array by default
   const [user, setUser] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
 
@@ -32,7 +32,7 @@ const LeftSidebar = () => {
         const q = query(userRef, where("username", "==", input.toLowerCase()));
         const querySnap = await getDocs(q);
 
-        if (!querySnap.empty && querySnap.docs[0].data().id !== userData.id) {
+        if (!querySnap.empty && querySnap.docs[0].data().id !== userData?.id) {
           const searchedUser = querySnap.docs[0].data();
           let userExist = chatData.some(user => user.rId === searchedUser.id);
 
@@ -95,10 +95,12 @@ const LeftSidebar = () => {
       toast.error(error.message);
       console.error("Error updating chats:", error);
     }
-  }
-  const setChat =async (item) => {
-    console.log(item);
-  }
+  };
+
+  const setChat = async (item) => {
+    setMessagesId(item.messageId);
+    setChatUser(item);
+  };
 
   return (
     <div className="ls">
@@ -120,22 +122,26 @@ const LeftSidebar = () => {
         </div>
       </div>
       <div className="ls-list">
-        {showSearch && user ? 
+        {showSearch && user ? (
           <div onClick={addChat} className="friends add-user">
-            <img src={user.avatar} alt="" />
+            <img src={user.avatar || assets.default_avatar} alt="User Avatar" />
             <p>{user.name}</p>
           </div>
-         :chatData.map((item, index) => (
-              <div onClick={()=>setChat(item)}key={index} className="friends">
-                <img src={item.userData.avatar} alt="" />
+        ) : (
+          Array.isArray(chatData) && chatData.length > 0 ? (
+            chatData.map((item, index) => (
+              <div onClick={() => setChat(item)} key={index} className="friends">
+                <img src={item?.userData?.avatar || assets.default_avatar} alt="User Avatar" />
                 <div>
-                  <p>{item.userData.name}</p>
-                  <span>{item.lastMessage}</span>
+                  <p>{item?.userData?.name || "Unknown User"}</p>
+                  <span>{item?.lastMessage || "No messages yet"}</span>
                 </div>
               </div>
             ))
-
-        }
+          ) : (
+            <p className="not-avb">No chats available</p>
+          )
+        )}
       </div>
     </div>
   );

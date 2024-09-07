@@ -17,8 +17,10 @@ import arrow_icon from './arrow_icon.png'
 import green_dot from './green_dot.png'
 import profilelogo from '../../public/Purple White Modern Smile Chat Mobile Icon Logo.png'
 import picon from './PIcon Logo.png'
+import chatboxx from './chatbox.png'
 
 const assets = {
+    chatboxx,
     picon,
     avatar_icon,
     profilelogo,

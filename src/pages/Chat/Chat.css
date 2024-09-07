@@ -13,3 +13,9 @@
     grid-template-columns:1fr 2fr 1fr;
 
 }
+.loading{
+    font-size: 20px;
+    color: aliceblue;
+    text-align: center;
+    font-weight: bold;
+}
