@@ -1,14 +1,14 @@
 .chat-box{
     height:75vh;
     position: relative;
-    background-color: #f2f4f7;
+    background-color: #ffffff;
 }
 .chat-user{
     padding: 10px 15px;
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid #d6c9c9;
+    border-bottom: 1px solid #ffffff;
 }
 .chat-user img{
     width: 25px;
@@ -32,7 +32,7 @@
     align-items:center;
     gap:12px;
     padding: 10px 15px;
-    background: white;
+    background: rgb(255, 255, 255);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -142,7 +142,7 @@
 
 @media (max-width: 900px) {
 .chat-box{
-    width: 100%;
+    width: 95%;
     justify-content: center;
 }
 .chat-user .arrow{
