@@ -21,7 +21,6 @@ This is a live chat web application built using React, Vite, and Firebase. The a
 Make sure you have the following installed:
 
 - Node.js (v14 or later)
-- npm (v6 or later) or yarn
 - Firebase account and project set up
 
 ## Setup Instructions
