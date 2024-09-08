@@ -42,5 +42,4 @@ const App = () => {
     </>
   )
 }
-//5.27.51
 export default App
