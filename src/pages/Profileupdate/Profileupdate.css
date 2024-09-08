@@ -57,3 +57,24 @@
     cursor: pointer;
     border-radius: 5px;
 }
+
+@media(max-width:900px) {
+    .profile-container{
+        flex-direction: column;
+        min-width: 70px;
+        height: 500px;
+    }
+    .profile label img{
+        width: 30px;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+    }
+    .profile label {
+        font-size: 12px;
+    }
+    .profile-pic{
+        max-width: 150px;
+        margin-bottom: 100px;
+        margin-top: -25px;
+    }
+}
