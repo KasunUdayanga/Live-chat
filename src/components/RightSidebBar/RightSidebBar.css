@@ -66,3 +66,8 @@
     cursor: pointer;
     border-radius: 40px;
 }
+@media (max-width: 900px){
+    .rs{
+        display: none;
+    }
+}

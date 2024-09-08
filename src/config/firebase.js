@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword, getAuth, signOut } from "firebase/auth";
-import { getFirestore, setDoc,doc } from "firebase/firestore";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword, getAuth, signOut, sendPasswordResetEmail } from "firebase/auth";
+import { getFirestore, setDoc,doc, collection, query, where, getDocs } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 
@@ -60,8 +60,27 @@ const logout=async ()=>{
    
 }
 
+const resetPass =async(email)=>{
+    if (!email) {
+        toast.error('Please enter a email');
+        return null;
+    }
+    try {
+        const useRef =collection(db,'users');
+        const q =query(useRef,where('email',"==",email))
+        const querySnap = await getDocs(q);
+        if (!querySnap.empty) {
+            await sendPasswordResetEmail(auth,email);
+            toast.success('Reset email sent successfully');
+        }else{
+            toast.error("Not send email".error)
+        }
+    } catch (error) {
+        console.error(error);
+        toast.error("An error occurred while sending reset email");
+    }
+}
 
 
 
-
-export{signup,login,logout,auth,db}
+export{signup,login,logout,auth,db,resetPass}

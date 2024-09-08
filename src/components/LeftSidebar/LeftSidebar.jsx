@@ -6,6 +6,7 @@ import {
   arrayUnion,
   collection,
   doc,
+  getDoc,
   getDocs,
   query,
   serverTimestamp,
@@ -19,7 +20,7 @@ import { toast } from "react-toastify";
 
 const LeftSidebar = () => {
   const navigate = useNavigate();
-  const { userData, chatData = [],chatUser,setChatUser,setMessagesId,messageId } = useContext(AppContext); // Ensure chatData is an array by default
+  const { userData, chatData = [],chatUser,setChatUser,setMessagesId,messageId,chatVisible,setChatVisible } = useContext(AppContext); // Ensure chatData is an array by default
   const [user, setUser] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
 
@@ -98,12 +99,28 @@ const LeftSidebar = () => {
   };
 
   const setChat = async (item) => {
-    setMessagesId(item.messageId);
+    try {
+      setMessagesId(item.messageId);
     setChatUser(item);
+    const userChatRef= doc(db, 'chats',userData.id);
+    const userChatSnap = await getDoc(userChatRef);
+    const userChatsData = userChatSnap.data();
+    const chatIndex = userChatsData.chatsData.findIndex((c) => c.messageId === item.messageId);
+    userChatsData.chatsData[chatIndex].messageSeen  = true;
+    await updateDoc(userChatRef,{
+      chatsData: userChatsData.chatsData
+    })
+    setChatVisible(true);
+    } catch (error) {
+      toast.error(error.message);
+    }
+
+
+    
   };
 
   return (
-    <div className="ls">
+    <div className={`ls ${chatVisible? "hidden":" "}`}>
       <div className="ls-top">
         <div className="ls-nav">
           <img src={assets.logo} alt="imag log" className="logo" />
@@ -130,7 +147,7 @@ const LeftSidebar = () => {
         ) : (
           Array.isArray(chatData) && chatData.length > 0 ? (
             chatData.map((item, index) => (
-              <div onClick={() => setChat(item)} key={index} className={`friends ${item.messageSeen || item.messageId === messageId ? "" :" border"}`}>
+              <div onClick={() => setChat(item)} key={index} className={`friends ${item.messageSeen || item.messageId === messageId ? "" :"border"}`}>
                 <img src={item?.userData?.avatar || assets.default_avatar} alt="User Avatar" />
                 <div>
                   <p>{item?.userData?.name || "Unknown User"}</p>

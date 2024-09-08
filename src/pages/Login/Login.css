@@ -55,3 +55,10 @@
     color: #077ef0;
     cursor: pointer;
 }
+@media(max-width:767px) {
+    .login{
+        flex-direction: column;
+        justify-content: center;
+        gap:10px;
+    }
+}
