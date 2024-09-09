@@ -27,7 +27,7 @@ Make sure you have the following installed:
 
 
 ### Go Live site
-[Click]([https://github.com/KasunUdayanga](https://live-chat-s8vs.onrender.com/))
+[Click](https://live-chat-s8vs.onrender.com)
 
 ### Clone the repository
 
@@ -35,6 +35,5 @@ Make sure you have the following installed:
 git clone https://github.com/KasunUdayanga/Live-chat
 cd Live-chat 
 
-### Clone the repository
 
 
