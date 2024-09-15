@@ -155,7 +155,7 @@ const LeftSidebar = () => {
             <div className="sub-menu">
               <p onClick={() => navigate("/profile")}>Edit Profile</p>
               <hr />
-              <p>Logout</p>
+              <p onClick={() => navigate("/Login")}>Logout</p>
             </div>
           </div>
         </div>
